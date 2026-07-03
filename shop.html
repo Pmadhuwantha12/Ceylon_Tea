@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Ceylon Tea</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-brand">Ceylon <span class="highlight">Tea</span></span>
+                <span class="logo-location">Sri Lanka</span>
+                <span class="logo-divider"></span>
+                <span class="logo-tagline">✦ Estate Grown ✦</span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="varieties.html">Varieties</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Place Your Order</h1>
+            <p>Select your tea and customize your order</p>
+        </section>
+
+        <section class="shop-container">
+            <div class="order-form">
+                <h2>Place Your Order</h2>
+
+                <div class="form-section">
+                    <h3>Customer Details</h3>
+                    <div class="form-group">
+                        <label for="customerName">Full Name *</label>
+                        <input type="text" id="customerName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email Address *</label>
+                        <input type="email" id="customerEmail" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number *</label>
+                        <input type="tel" id="customerPhone" required placeholder="+94 77 123 4567">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Select Your Teas</h3>
+                    <p class="section-note">Add multiple teas to your order</p>
+                    
+                    <div id="orderItemsContainer">
+                        <div class="order-item">
+                            <div class="item-row">
+                                <div class="item-select">
+                                    <label>Tea Type</label>
+                                    <select class="tea-type" onchange="updateOrderSummary()">
+                                        <option value="12.00">Black Tea - $12.00/100g</option>
+                                        <option value="14.99">Green Tea - $14.99/100g</option>
+                                        <option value="4.75">White Tea - $4.75/20g</option>
+                                        <option value="16.99">Oolong Tea - $16.99/100g</option>
+                                        <option value="4.75">Chai Spice - $4.75/20g</option>
+                                    </select>
+                                </div>
+                                <div class="item-quantity">
+                                    <label>Qty</label>
+                                    <input type="number" class="item-qty" min="1" max="20" value="1" onchange="updateOrderSummary()">
+                                </div>
+                                <div class="item-remove">
+                                    <button type="button" class="remove-btn" onclick="removeItem(this)" disabled>✕</button>
+                                </div>
+                            </div>
+                            <div class="item-subtotal">$12.00</div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary add-item-btn" onclick="addOrderItem()">+ Add Another Tea</button>
+                </div>
+
+                <div class="form-section">
+                    <h3>Shipping Address</h3>
+                    <div class="form-group">
+                        <label for="address">Shipping Address *</label>
+                        <textarea id="address" rows="3" required placeholder="Enter your full address"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Extras</h3>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="giftWrap" onchange="updateOrderSummary()">
+                            <span class="checkbox-text">Add Gift Wrapping (+$1.50)</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialInstructions">Special Instructions (Optional)</label>
+                        <textarea id="specialInstructions" rows="2" placeholder="Any special requests?"></textarea>
+                    </div>
+                </div>
+
+                <div class="price-breakdown">
+                    <h3>📋 Order Summary</h3>
+                    <div id="orderItemsSummary"></div>
+                    <div class="summary-divider"></div>
+                    <p>Subtotal: <span id="subtotal">$12.00</span></p>
+                    <p>Gift Wrap: <span id="giftWrapCost">$0.00</span></p>
+                    <p>Shipping: <span id="shippingCost">$3.00</span></p>
+                    <h4>Total: <span id="totalCost">$15.00</span></h4>
+                </div>
+
+                <button type="submit" class="btn btn-large" id="placeOrderBtn">Place Order</button>
+
+                <div id="orderConfirmation" class="order-confirmation" style="display: none;">
+                    <h2>✅ Order Confirmed!</h2>
+                    <p id="confirmationMessage"></p>
+                    <p>Order Number: <strong id="orderNumber"></strong></p>
+                    <button class="btn" onclick="resetForm()">Place Another Order</button>
+                </div>
+            </div>
+
+            <div class="tea-finder" id="quiz">
+                <h2>🍃 Tea Finder Quiz</h2>
+                <p>Answer a few questions to find your perfect tea!</p>
+                <div class="quiz-container">
+                    <div class="quiz-question" id="quizQuestion">
+                        <h3 id="questionText">1. What flavor do you prefer?</h3>
+                        <div class="quiz-options" id="quizOptions">
+                            <button class="quiz-option" onclick="answerQuiz('fruity')">🍑 Fruity & Sweet</button>
+                            <button class="quiz-option" onclick="answerQuiz('floral')">🌸 Floral & Light</button>
+                            <button class="quiz-option" onclick="answerQuiz('earthy')">🌿 Earthy & Fresh</button>
+                            <button class="quiz-option" onclick="answerQuiz('smoky')">🔥 Smoky & Bold</button>
+                        </div>
+                    </div>
+                    <div id="quizResult" style="display: none;">
+                        <h3>Your Recommended Tea:</h3>
+                        <div id="quizRecommendation" class="quiz-recommendation"></div>
+                        <button class="btn" onclick="resetQuiz()">Retake Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+    </footer>
+
+    <button id="backToTop" title="Back to Top">↑</button>
+    <script src="js/script.js"></script>
+</body>
+</html>

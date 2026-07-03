@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea Varieties</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-brand">Ceylon <span class="highlight">Tea</span></span>
+                <span class="logo-location">Sri Lanka</span>
+                <span class="logo-divider"></span>
+                <span class="logo-tagline">✦ Estate Grown ✦</span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="varieties.html" class="active">Varieties</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Our Tea Varieties</h1>
+            <p>Explore the diverse flavors of Ceylon tea</p>
+        </section>
+
+        <section class="varieties-grid">
+            <div class="variety-card">
+                <img src="images/black-tea.jpg" alt="Black Tea">
+                <h2>Black Tea</h2>
+                <p class="origin">Origin: Low to Mid Elevations</p>
+                <p class="description">Full-bodied, bold, and brisk. Perfect for morning wake-up calls with milk and sugar. Rich in antioxidants and caffeine.</p>
+                <div class="flavor-profile">
+                    <span>⚡ Strong</span>
+                    <span>🍂 Malty</span>
+                    <span>🌾 Brisk</span>
+                </div>
+                <p class="price">$12.00 / 100g</p>
+                <button class="btn" onclick="addToCart('Black Tea', 12.00)">Add to Cart</button>
+            </div>
+
+            <div class="variety-card">
+                <img src="images/green-tea.jpg" alt="Green Tea">
+                <h2>Green Tea</h2>
+                <p class="origin">Origin: High Elevations (Uva, Nuwara Eliya)</p>
+                <p class="description">Light, refreshing, and grassy. Rich in catechins and perfect for health-conscious tea lovers.</p>
+                <div class="flavor-profile">
+                    <span>🌿 Fresh</span>
+                    <span>🍃 Grassy</span>
+                    <span>🌸 Floral</span>
+                </div>
+                <p class="price">$14.99 / 100g</p>
+                <button class="btn" onclick="addToCart('Green Tea', 14.99)">Add to Cart</button>
+            </div>
+
+            <div class="variety-card">
+                <img src="images/white-tea.jpg" alt="White Tea">
+                <h2>White Tea – Luxury Loose Leaf Tin </h2>
+                <p class="origin">Origin: High Elevations (Nuwara Eliya)</p>
+                <p class="description">Delicate, floral, and subtly sweet. The least processed tea with the highest antioxidant content.</p>
+                <div class="flavor-profile">
+                    <span>🌸 Delicate</span>
+                    <span>🍯 Honeyed</span>
+                    <span>🌺 Floral</span>
+                </div>
+                <p class="price">$4.75 / 20g</p>
+                <button class="btn" onclick="addToCart('White Tea', 4.75)">Add to Cart</button>
+            </div>
+
+            <div class="variety-card">
+                <img src="images/oolong-tea.jpg" alt="Oolong Tea">
+                <h2>Oolong Tea</h2>
+                <p class="origin">Origin: Mid Elevations (Kandy, Matale)</p>
+                <p class="description">Partially oxidized with complex flavors ranging from floral to toasty. A perfect balance between black and green tea.</p>
+                <div class="flavor-profile">
+                    <span>🔥 Roasted</span>
+                    <span>🌸 Floral</span>
+                    <span>🍯 Sweet</span>
+                </div>
+                <p class="price">$16.99 / 100g</p>
+                <button class="btn" onclick="addToCart('Oolong Tea', 16.99)">Add to Cart</button>
+            </div>
+
+            <div class="variety-card">
+                <img src="images/chai-spice.jpg" alt="Chai Spice">
+                <h2>Chai Spice</h2>
+                <p class="origin">Origin: Blended (Sri Lankan Black Tea + Spices)</p>
+                <p class="description">Aromatic and warming blend of premium Ceylon black tea with traditional spices like cinnamon, cardamom, ginger, and cloves.</p>
+                <div class="flavor-profile">
+                    <span>🔥 Warm</span>
+                    <span>🌿 Spicy</span>
+                    <span>🍯 Sweet</span>
+                    <span>🌸 Aromatic</span>
+                </div>
+                <p class="price">$4.75 / 20g</p>
+                <button class="btn" onclick="addToCart('Chai Spice', 4.75)">Add to Cart</button>
+            </div>
+        </section>
+
+        <div id="cartNotification" class="cart-notification"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+    </footer>
+
+    <button id="backToTop" title="Back to Top">↑</button>
+    <script src="js/script.js"></script>
+</body>
+</html>

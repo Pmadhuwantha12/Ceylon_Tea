@@ -1,0 +1,334 @@
+// ===== MOBILE MENU =====
+function toggleMenu() {
+    document.querySelector('nav ul').classList.toggle('show');
+}
+
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.querySelector('nav ul').classList.remove('show');
+    });
+});
+
+// ===== SHOPPING CART =====
+let cartItems = [];
+
+function addToCart(teaName, price) {
+    cartItems.push({ name: teaName, price });
+    showNotification(`${teaName} added to cart! ($${price})`);
+}
+
+function showNotification(message) {
+    let notification = document.getElementById('cartNotification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'cartNotification';
+        notification.className = 'cart-notification';
+        document.body.appendChild(notification);
+    }
+    notification.innerHTML = message;
+    notification.classList.add('show');
+    setTimeout(() => notification.classList.remove('show'), 3000);
+}
+
+// ===== ORDER SYSTEM =====
+const teaNames = {
+    '12.00': 'Black Tea',
+    '14.99': 'Green Tea',
+    '4.75': 'White Tea',
+    '16.99': 'Oolong Tea',
+    '4.75': 'Chai Spice'
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('orderItemsContainer')) {
+        addOrderItem();
+    }
+});
+
+function addOrderItem() {
+    const container = document.getElementById('orderItemsContainer');
+    if (!container) return;
+
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'order-item';
+    itemDiv.innerHTML = `
+        <div class="item-row">
+            <div class="item-select">
+                <label>Tea Type</label>
+                <select class="tea-type" onchange="updateOrderSummary()">
+                    <option value="12.00">Black Tea - $12.00/100g</option>
+                    <option value="14.99">Green Tea - $14.99/100g</option>
+                    <option value="4.75">White Tea - $4.75/20g</option>
+                    <option value="16.99">Oolong Tea - $16.99/100g</option>
+                    <option value="4.75">Chai Spice - $4.75/20g</option>
+                </select>
+            </div>
+            <div class="item-quantity">
+                <label>Qty</label>
+                <input type="number" class="item-qty" min="1" max="20" value="1" onchange="updateOrderSummary()">
+            </div>
+            <div class="item-remove">
+                <button type="button" class="remove-btn" onclick="removeItem(this)">✕</button>
+            </div>
+        </div>
+        <div class="item-subtotal">$0.00</div>
+    `;
+    container.appendChild(itemDiv);
+    updateRemoveButtons();
+    updateOrderSummary();
+}
+
+function removeItem(btn) {
+    const container = document.getElementById('orderItemsContainer');
+    if (container.children.length <= 1) {
+        alert('You need at least one item in your order.');
+        return;
+    }
+    const item = btn.closest('.order-item');
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-20px)';
+    setTimeout(() => {
+        item.remove();
+        updateRemoveButtons();
+        updateOrderSummary();
+    }, 300);
+}
+
+function updateRemoveButtons() {
+    const items = document.querySelectorAll('.order-item');
+    document.querySelectorAll('.remove-btn').forEach((btn, i) => {
+        btn.disabled = items.length <= 1;
+    });
+}
+
+function updateOrderSummary() {
+    const items = document.querySelectorAll('.order-item');
+    let subtotal = 0;
+    const itemDetails = [];
+
+    items.forEach(item => {
+        const select = item.querySelector('.tea-type');
+        const qty = parseInt(item.querySelector('.item-qty').value) || 1;
+        const price = parseFloat(select.value);
+        const teaName = teaNames[select.value] || 'Tea';
+        const total = price * qty;
+        subtotal += total;
+
+        item.querySelector('.item-subtotal').textContent = '$' + total.toFixed(2);
+        itemDetails.push({ name: teaName, qty, total });
+    });
+
+    const summaryContainer = document.getElementById('orderItemsSummary');
+    if (summaryContainer) {
+        summaryContainer.innerHTML = itemDetails.length ? 
+            itemDetails.map(item => `
+                <div class="summary-item">
+                    <span class="item-name">${item.name} × ${item.qty}</span>
+                    <span class="item-price">$${item.total.toFixed(2)}</span>
+                </div>
+            `).join('') : '<p style="color:#999;">No items in cart</p>';
+    }
+
+    const giftWrap = document.getElementById('giftWrap');
+    const giftCost = giftWrap?.checked ? 1.50 : 0;
+    const shipping = subtotal > 30 ? 0 : 2.00;
+    const total = subtotal + giftCost + shipping;
+
+    document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('giftWrapCost').textContent = '$' + giftCost.toFixed(2);
+    document.getElementById('shippingCost').textContent = '$' + shipping.toFixed(2);
+    document.getElementById('totalCost').textContent = '$' + total.toFixed(2);
+}
+
+// ===== ORDER SUBMISSION =====
+document.getElementById('orderForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('customerName').value.trim();
+    const email = document.getElementById('customerEmail').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const address = document.getElementById('address').value.trim();
+
+    if (!name || !email || !phone || !address) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    const items = document.querySelectorAll('.order-item');
+    let orderSummary = [], totalItems = 0;
+
+    items.forEach(item => {
+        const select = item.querySelector('.tea-type');
+        const qty = parseInt(item.querySelector('.item-qty').value) || 1;
+        orderSummary.push(`${teaNames[select.value] || 'Tea'} × ${qty}`);
+        totalItems += qty;
+    });
+
+    document.querySelector('.order-form form').style.display = 'none';
+    document.getElementById('orderConfirmation').style.display = 'block';
+    document.getElementById('confirmationMessage').innerHTML = `
+        Thank you, <strong>${name}</strong>!<br>
+        Your order of <strong>${totalItems} items</strong> has been placed.<br><br>
+        <strong>Order Details:</strong><br>${orderSummary.join('<br>')}<br><br>
+        We'll ship it to: <em>${address}</em>
+    `;
+    document.getElementById('orderNumber').textContent = 'TEA-' + Date.now().toString().slice(-6);
+});
+
+function resetForm() {
+    document.querySelector('.order-form form').style.display = 'block';
+    document.getElementById('orderConfirmation').style.display = 'none';
+    document.getElementById('orderItemsContainer').innerHTML = '';
+    addOrderItem();
+    ['customerName', 'customerEmail', 'customerPhone', 'address', 'specialInstructions'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+    });
+    document.getElementById('giftWrap').checked = false;
+    updateOrderSummary();
+}
+
+// ===== TEA FINDER QUIZ =====
+let quizStep = 0;
+const quizAnswers = [];
+
+const quizQuestions = [
+    {
+        question: "1. What flavor do you prefer?",
+        options: [
+            { value: 'fruity', label: '🍑 Fruity & Sweet' },
+            { value: 'floral', label: '🌸 Floral & Light' },
+            { value: 'earthy', label: '🌿 Earthy & Fresh' },
+            { value: 'smoky', label: '🔥 Smoky & Bold' }
+        ]
+    },
+    {
+        question: "2. How strong do you like your tea?",
+        options: [
+            { value: 'light', label: '☁️ Light & Delicate' },
+            { value: 'medium', label: '🌤️ Medium & Balanced' },
+            { value: 'strong', label: '⚡ Strong & Bold' }
+        ]
+    },
+    {
+        question: "3. When do you usually drink tea?",
+        options: [
+            { value: 'morning', label: '🌅 Morning' },
+            { value: 'afternoon', label: '☕ Afternoon' },
+            { value: 'evening', label: '🌙 Evening' }
+        ]
+    }
+];
+
+const recommendations = {
+    'fruity_light_morning': 'White Tea - Delicate, floral, and refreshing',
+    'fruity_medium_afternoon': 'Oolong Tea - Complex, fruity, and smooth',
+    'fruity_strong_evening': 'Black Tea - Bold, brisk, and energizing',
+    'floral_light_evening': 'White Tea - Light, floral, and calming',
+    'floral_medium_afternoon': 'Green Tea - Fresh, grassy, and rejuvenating',
+    'earthy_medium_morning': 'Green Tea - Fresh, earthy, and awakening',
+    'earthy_strong_morning': 'Black Tea - Strong, malty, and invigorating',
+    'smoky_strong_morning': 'Black Tea - Bold, smoky, and robust',
+    'spicy_strong_morning': 'Chai Spice - Aromatic, warming, and invigorating ✨'
+};
+
+function answerQuiz(value) {
+    quizAnswers.push(value);
+    quizStep++;
+    quizStep < quizQuestions.length ? showQuestion() : showRecommendation();
+}
+
+function showQuestion() {
+    const q = quizQuestions[quizStep];
+    document.getElementById('questionText').textContent = q.question;
+    const optionsDiv = document.getElementById('quizOptions');
+    optionsDiv.innerHTML = '';
+    q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.textContent = opt.label;
+        btn.onclick = () => answerQuiz(opt.value);
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function showRecommendation() {
+    document.getElementById('quizQuestion').style.display = 'none';
+    document.getElementById('quizResult').style.display = 'block';
+    const key = quizAnswers.join('_');
+    const recommendation = recommendations[key] || 'Oolong Tea - A perfect balance for any time of day';
+    document.getElementById('quizRecommendation').innerHTML = `
+        <p style="font-size:1.3rem;font-weight:bold;">${recommendation}</p>
+        <p>Based on your preferences, we recommend this tea.</p>
+        <a href="shop.html" class="btn" style="margin-top:10px;">Shop Now</a>
+    `;
+}
+
+function resetQuiz() {
+    quizStep = 0;
+    quizAnswers.length = 0;
+    document.getElementById('quizQuestion').style.display = 'block';
+    document.getElementById('quizResult').style.display = 'none';
+    showQuestion();
+}
+
+if (document.getElementById('quizQuestion')) showQuestion();
+
+// ===== CONTACT FORM =====
+document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+    const feedback = document.getElementById('contactFeedback');
+
+    if (!name || !email || !message) {
+        feedback.innerHTML = 'Please fill in all required fields.';
+        feedback.className = 'error';
+        return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+        feedback.innerHTML = 'Please enter a valid email address.';
+        feedback.className = 'error';
+        return;
+    }
+
+    feedback.innerHTML = `✅ Thank you, ${name}! Your message has been sent. We'll get back to you within 24 hours.`;
+    feedback.className = 'success';
+    this.reset();
+    setTimeout(() => { feedback.innerHTML = ''; feedback.className = ''; }, 5000);
+});
+
+// ===== LOAD MORE REVIEWS =====
+function loadMoreReviews() {
+    const reviews = [
+        { stars: '⭐⭐⭐⭐⭐', text: '"The green tea is incredibly fresh. I feel energized every morning!"', name: '- David C.' },
+        { stars: '⭐⭐⭐⭐⭐', text: '"I\'ve tried many teas, but Ceylon Tea is truly special."', name: '- Emma W.' },
+        { stars: '⭐⭐⭐⭐', text: '"Great service and fast delivery. The oolong tea is my new favorite."', name: '- Michael T.' },
+        { stars: '⭐⭐⭐⭐⭐', text: '"The white tea is pure luxury. Perfect for evening relaxation."', name: '- Lisa R.' }
+    ];
+
+    const grid = document.getElementById('reviewDisplay');
+    if (!grid) return;
+
+    reviews.forEach(review => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `<div class="stars">${review.stars}</div><p>${review.text}</p><h4>${review.name}</h4>`;
+        grid.appendChild(card);
+    });
+    document.querySelector('.reviews .btn').style.display = 'none';
+}
+
+// ===== BACK TO TOP =====
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+    window.addEventListener('scroll', () => {
+        backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}

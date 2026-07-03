@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ceylon Tea | Taste the Heritage</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <span class="logo-brand"
+            >Ceylon <span class="highlight">Tea</span></span
+          >
+          <span class="logo-location">Sri Lanka</span>
+          <span class="logo-divider"></span>
+          <span class="logo-tagline">✦ Estate Grown ✦</span>
+        </div>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="varieties.html">Varieties</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Discover the Finest Ceylon Tea</h1>
+          <p>
+            From the lush hills of Sri Lanka to your cup. Experience the rich
+            heritage and exquisite flavors of premium Ceylon tea.
+          </p>
+          <a href="shop.html" class="btn">Shop Now</a>
+          <a href="varieties.html" class="btn btn-secondary"
+            >Explore Varieties</a
+          >
+        </div>
+      </section>
+
+      <section class="features">
+        <h2>Why Choose Ceylon Tea?</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="emoji">🌱</span>
+            <h3>100% Pure</h3>
+            <p>
+              Grown in the pristine highlands of Sri Lanka with no artificial
+              additives.
+            </p>
+          </div>
+          <div class="feature-card">
+            <span class="emoji">🏆</span>
+            <h3>World Renowned</h3>
+            <p>
+              Ceylon tea is celebrated globally for its exceptional quality and
+              taste.
+            </p>
+          </div>
+          <div class="feature-card">
+            <span class="emoji">🌿</span>
+            <h3>Health Benefits</h3>
+            <p>
+              Rich in antioxidants, promotes heart health, and boosts immunity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz-preview">
+        <h2>Find Your Perfect Tea</h2>
+        <p>
+          Take our quick quiz to discover the tea that matches your taste
+          preferences!
+        </p>
+        <a href="shop.html#quiz" class="btn">Start Quiz</a>
+      </section>
+
+      <section class="reviews">
+        <h2>What Our Customers Say</h2>
+        <div class="review-grid" id="reviewDisplay">
+          <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"The best black tea I've ever tasted! Rich and full-bodied."</p>
+            <h4>- Sarah M.</h4>
+          </div>
+          <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"The white tea is delicate and floral. Absolutely love it!"</p>
+            <h4>- James K.</h4>
+          </div>
+          <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐</div>
+            <p>"Great quality tea at reasonable prices. Highly recommend."</p>
+            <h4>- Priya R.</h4>
+          </div>
+        </div>
+        <button class="btn" onclick="loadMoreReviews()">
+          Load More Reviews
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+    </footer>
+
+    <button id="backToTop" title="Back to Top">↑</button>
+    <script src="js/script.js"></script>
+  </body>
+</html>
