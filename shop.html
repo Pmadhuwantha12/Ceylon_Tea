@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Ceylon Tea</title>
+    <meta name="description" content="Order premium Ceylon tea online. Multiple varieties available with real-time price calculation.">
     <link rel="stylesheet" href="css/style.css">
-    <!-- ===== FAVICON ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
@@ -68,11 +69,15 @@
                                 <div class="item-select">
                                     <label>Tea Type</label>
                                     <select class="tea-type" onchange="updateOrderSummary()">
+                                        <option value="" disabled selected>-- Select a Tea --</option>
                                         <option value="12.00">Black Tea - $12.00/100g</option>
                                         <option value="14.99">Green Tea - $14.99/100g</option>
                                         <option value="4.75">White Tea - $4.75/20g</option>
                                         <option value="16.99">Oolong Tea - $16.99/100g</option>
                                         <option value="4.75">Chai Spice - $4.75/20g</option>
+                                        <option value="8.99">Green Tea Curls - $8.99/25 Tea Bags</option>
+                                        <option value="24.99">Big Leaf Black Tea - $24.99/400g</option>
+                                        <option value="12.99">Ginger & Lemongrass - $12.99/100g</option>
                                     </select>
                                 </div>
                                 <div class="item-quantity">
@@ -83,7 +88,7 @@
                                     <button type="button" class="remove-btn" onclick="removeItem(this)" disabled>✕</button>
                                 </div>
                             </div>
-                            <div class="item-subtotal">$12.00</div>
+                            <div class="item-subtotal">$0.00</div>
                         </div>
                     </div>
 
@@ -116,10 +121,10 @@
                     <h3>📋 Order Summary</h3>
                     <div id="orderItemsSummary"></div>
                     <div class="summary-divider"></div>
-                    <p>Subtotal: <span id="subtotal">$12.00</span></p>
+                    <p>Subtotal: <span id="subtotal">$0.00</span></p>
                     <p>Gift Wrap: <span id="giftWrapCost">$0.00</span></p>
                     <p>Shipping: <span id="shippingCost">$3.00</span></p>
-                    <h4>Total: <span id="totalCost">$15.00</span></h4>
+                    <h4>Total: <span id="totalCost">$3.00</span></h4>
                 </div>
 
                 <button type="submit" class="btn btn-large" id="placeOrderBtn">Place Order</button>
@@ -143,6 +148,7 @@
                             <button class="quiz-option" onclick="answerQuiz('floral')">🌸 Floral & Light</button>
                             <button class="quiz-option" onclick="answerQuiz('earthy')">🌿 Earthy & Fresh</button>
                             <button class="quiz-option" onclick="answerQuiz('smoky')">🔥 Smoky & Bold</button>
+                            <button class="quiz-option" onclick="answerQuiz('spicy')">🌶️ Spicy & Warm</button>
                         </div>
                     </div>
                     <div id="quizResult" style="display: none;">
@@ -155,8 +161,64 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <span class="footer-brand">Ceylon <span class="highlight">Tea</span></span>
+                    <span class="footer-tagline">✦ Estate Grown ✦</span>
+                </div>
+                <p class="footer-description">Premium Ceylon tea since 1867. Bringing you the finest tea from the lush hills of Sri Lanka.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="varieties.html">Varieties</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Teas</h4>
+                <ul>
+                    <li><a href="varieties.html">Black Tea</a></li>
+                    <li><a href="varieties.html">Green Tea</a></li>
+                    <li><a href="varieties.html">White Tea</a></li>
+                    <li><a href="varieties.html">Oolong Tea</a></li>
+                    <li><a href="varieties.html">Chai Spice</a></li>
+                    <li><a href="varieties.html">Green Tea Curls</a></li>
+                    <li><a href="varieties.html">Big Leaf Black Tea</a></li>
+                    <li><a href="varieties.html">Ginger & Lemongrass</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Get in Touch</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> Kandy, Sri Lanka</li>
+                    <li><i class="fas fa-phone"></i> +94 81 234 5678</li>
+                    <li><i class="fas fa-envelope"></i> info@ceylontea.lk</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 8AM - 6PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Shipping Policy</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <button id="backToTop" title="Back to Top">↑</button>
