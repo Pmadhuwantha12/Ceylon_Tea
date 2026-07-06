@@ -1,122 +1,269 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ceylon Tea | Taste the Heritage</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- ===== FAVICON ===== -->
+    <meta name="description" content="Discover the finest Ceylon tea from Sri Lanka. Premium tea heritage website.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/favicon/site.webmanifest" />
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <nav>
-        <div class="logo">
-          <span class="logo-brand"
-            >Ceylon <span class="highlight">Tea</span></span
-          >
-          <span class="logo-location">Sri Lanka</span>
-          <span class="logo-divider"></span>
-          <span class="logo-tagline">✦ Estate Grown ✦</span>
-        </div>
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="varieties.html">Varieties</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-      </nav>
+        <nav>
+            <div class="logo">
+                <span class="logo-brand">Ceylon <span class="highlight">Tea</span></span>
+                <span class="logo-location">Sri Lanka</span>
+                <span class="logo-divider"></span>
+                <span class="logo-tagline">✦ Estate Grown ✦</span>
+            </div>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="varieties.html">Varieties</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero-content">
-          <h1>Discover the Finest Ceylon Tea</h1>
-          <p>
-            From the lush hills of Sri Lanka to your cup. Experience the rich
-            heritage and exquisite flavors of premium Ceylon tea.
-          </p>
-          <a href="shop.html" class="btn">Shop Now</a>
-          <a href="varieties.html" class="btn btn-secondary"
-            >Explore Varieties</a
-          >
-        </div>
-      </section>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-badge">✦ Premium Ceylon Tea</span>
+                <h1>Discover the Finest Ceylon Tea</h1>
+                <p>From the lush hills of Sri Lanka to your cup. Experience the rich heritage and exquisite flavors of premium Ceylon tea.</p>
+                <div class="hero-buttons">
+                    <a href="shop.html" class="btn">Shop Now</a>
+                    <a href="varieties.html" class="btn btn-secondary">Explore Varieties</a>
+                </div>
+            </div>
+        </section>
 
-      <section class="features">
-        <h2>Why Choose Ceylon Tea?</h2>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <span class="emoji">🌱</span>
-            <h3>100% Pure</h3>
-            <p>
-              Grown in the pristine highlands of Sri Lanka with no artificial
-              additives.
-            </p>
-          </div>
-          <div class="feature-card">
-            <span class="emoji">🏆</span>
-            <h3>World Renowned</h3>
-            <p>
-              Ceylon tea is celebrated globally for its exceptional quality and
-              taste.
-            </p>
-          </div>
-          <div class="feature-card">
-            <span class="emoji">🌿</span>
-            <h3>Health Benefits</h3>
-            <p>
-              Rich in antioxidants, promotes heart health, and boosts immunity.
-            </p>
-          </div>
-        </div>
-      </section>
+        <section class="features-banner">
+            <div class="feature-item">
+                <i class="fas fa-leaf"></i>
+                <h4>100% Pure Ceylon</h4>
+                <p>Grown in Sri Lanka's pristine highlands</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-trophy"></i>
+                <h4>World Renowned</h4>
+                <p>Celebrated globally for exceptional quality</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-heartbeat"></i>
+                <h4>Health Benefits</h4>
+                <p>Rich in antioxidants & boosts immunity</p>
+            </div>
+        </section>
 
-      <section class="quiz-preview">
-        <h2>Find Your Perfect Tea</h2>
-        <p>
-          Take our quick quiz to discover the tea that matches your taste
-          preferences!
-        </p>
-        <a href="shop.html#quiz" class="btn">Start Quiz</a>
-      </section>
+        <section class="best-sellers">
+            <div class="section-header">
+                <span class="section-tag">✦ Best Sellers</span>
+                <h2>Sit back and relax while we bring you the best of Ceylon tea!</h2>
+                <p>Explore our wide range of Ceylon Tea consisting of premium grades from the best plantations in the island. 100% pure Ceylon tea, that makes your everyday tea experience a truly authentic one.</p>
+                <a href="varieties.html" class="btn btn-outline">View all products <i class="fas fa-arrow-right"></i></a>
+            </div>
 
-      <section class="reviews">
-        <h2>What Our Customers Say</h2>
-        <div class="review-grid" id="reviewDisplay">
-          <div class="review-card">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>"The best black tea I've ever tasted! Rich and full-bodied."</p>
-            <h4>- Sarah M.</h4>
-          </div>
-          <div class="review-card">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>"The white tea is delicate and floral. Absolutely love it!"</p>
-            <h4>- James K.</h4>
-          </div>
-          <div class="review-card">
-            <div class="stars">⭐⭐⭐⭐</div>
-            <p>"Great quality tea at reasonable prices. Highly recommend."</p>
-            <h4>- Priya R.</h4>
-          </div>
-        </div>
-        <button class="btn" onclick="loadMoreReviews()">
-          Load More Reviews
-        </button>
-      </section>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">Bestseller</div>
+                    <div class="product-image">
+                        <img src="images/black-tea.jpg" alt="Black Tea">
+                        <button class="product-wishlist" onclick="addToWishlist('Black Tea')"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Black Tea</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(24 reviews)</span>
+                        </div>
+                        <p class="product-desc">Full-bodied, bold, and brisk. Perfect for morning wake-up calls.</p>
+                        <div class="product-price">
+                            <span class="price">$12.00</span>
+                            <span class="price-old">$15.00</span>
+                        </div>
+                        <button class="btn btn-product" onclick="addToCart('Black Tea', 12.00, this)">Add to Cart <i class="fas fa-shopping-bag"></i></button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge" style="background:#f4a261;">Popular</div>
+                    <div class="product-image">
+                        <img src="images/green-tea.jpg" alt="Green Tea">
+                        <button class="product-wishlist" onclick="addToWishlist('Green Tea')"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Green Tea</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(18 reviews)</span>
+                        </div>
+                        <p class="product-desc">Light, refreshing, and grassy. Rich in catechins.</p>
+                        <div class="product-price">
+                            <span class="price">$14.99</span>
+                        </div>
+                        <button class="btn btn-product" onclick="addToCart('Green Tea', 14.99, this)">Add to Cart <i class="fas fa-shopping-bag"></i></button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge" style="background:#3498db;">New</div>
+                    <div class="product-image">
+                        <img src="images/white-tea.jpg" alt="White Tea">
+                        <button class="product-wishlist" onclick="addToWishlist('White Tea')"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>White Tea</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(12 reviews)</span>
+                        </div>
+                        <p class="product-desc">Delicate, floral, and subtly sweet. The least processed tea.</p>
+                        <div class="product-price">
+                            <span class="price">$4.75</span>
+                            <span class="price-old">$6.50</span>
+                        </div>
+                        <button class="btn btn-product" onclick="addToCart('White Tea', 4.75, this)">Add to Cart <i class="fas fa-shopping-bag"></i></button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge">Bestseller</div>
+                    <div class="product-image">
+                        <img src="images/oolong-tea.jpg" alt="Oolong Tea">
+                        <button class="product-wishlist" onclick="addToWishlist('Oolong Tea')"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Oolong Tea</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(9 reviews)</span>
+                        </div>
+                        <p class="product-desc">Partially oxidized with complex floral to toasty flavors.</p>
+                        <div class="product-price">
+                            <span class="price">$16.99</span>
+                            <span class="price-old">$19.99</span>
+                        </div>
+                        <button class="btn btn-product" onclick="addToCart('Oolong Tea', 16.99, this)">Add to Cart <i class="fas fa-shopping-bag"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quiz-preview">
+            <div class="quiz-content">
+                <span class="quiz-tag">✦ Find Your Match</span>
+                <h2>Find Your Perfect Tea</h2>
+                <p>Take our quick quiz to discover the tea that matches your taste preferences!</p>
+                <a href="shop.html#quiz" class="btn">Start Quiz <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <div class="section-header">
+                <span class="section-tag">✦ Testimonials</span>
+                <h2>What Our Customers Say</h2>
+            </div>
+            <div class="review-grid" id="reviewDisplay">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The best black tea I've ever tasted! Rich and full-bodied."</p>
+                    <h4>- Sarah M.</h4>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The white tea is delicate and floral. Absolutely love it!"</p>
+                    <h4>- James K.</h4>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐</div>
+                    <p>"Great quality tea at reasonable prices. Highly recommend."</p>
+                    <h4>- Priya R.</h4>
+                </div>
+            </div>
+            <div class="reviews-cta">
+                <button class="btn" onclick="loadMoreReviews()">Load More Reviews</button>
+            </div>
+        </section>
     </main>
 
-    <footer>
-      <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <span class="footer-brand">Ceylon <span class="highlight">Tea</span></span>
+                    <span class="footer-tagline">✦ Estate Grown ✦</span>
+                </div>
+                <p class="footer-description">Premium Ceylon tea since 1867. Bringing you the finest tea from the lush hills of Sri Lanka.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="varieties.html">Varieties</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Teas</h4>
+                <ul>
+                    <li><a href="varieties.html">Black Tea</a></li>
+                    <li><a href="varieties.html">Green Tea</a></li>
+                    <li><a href="varieties.html">White Tea</a></li>
+                    <li><a href="varieties.html">Oolong Tea</a></li>
+                    <li><a href="varieties.html">Chai Spice</a></li>
+                    <li><a href="varieties.html">Green Tea Curls</a></li>
+                    <li><a href="varieties.html">Big Leaf Black Tea</a></li>
+                    <li><a href="varieties.html">Ginger & Lemongrass</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Get in Touch</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> Kandy, Sri Lanka</li>
+                    <li><i class="fas fa-phone"></i> +94 81 234 5678</li>
+                    <li><i class="fas fa-envelope"></i> info@ceylontea.lk</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 8AM - 6PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Shipping Policy</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <button id="backToTop" title="Back to Top">↑</button>
     <script src="js/script.js"></script>
-  </body>
+</body>
 </html>
