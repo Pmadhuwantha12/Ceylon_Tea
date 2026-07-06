@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tea Varieties</title>
+    <meta name="description" content="Explore the diverse flavors of Ceylon tea. Black, Green, White, Oolong, Chai Spice, and more.">
     <link rel="stylesheet" href="css/style.css">
-    <!-- ===== FAVICON ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
@@ -28,11 +29,31 @@
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 <span id="cartCount">0</span>
+            </div>
             <div class="hamburger" onclick="toggleMenu()">☰</div>
         </nav>
     </header>
 
     <main>
+        <div id="cartSidebar" class="cart-sidebar">
+            <div class="cart-header">
+                <h3>🛒 Your Cart</h3>
+                <button onclick="toggleCart()" class="cart-close">✕</button>
+            </div>
+            <div id="cartItemsList">
+                <p style="text-align:center;color:#999;padding:20px;">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <p>Total: <strong id="cartTotalPrice">$0.00</strong></p>
+                </div>
+                <button class="btn" onclick="goToCheckout()" style="width:100%;">Checkout →</button>
+            </div>
+        </div>
+        <div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
+
         <section class="page-header">
             <h1>Our Tea Varieties</h1>
             <p>Explore the diverse flavors of Ceylon tea</p>
@@ -50,7 +71,7 @@
                     <span>🌾 Brisk</span>
                 </div>
                 <p class="price">$12.00 / 100g</p>
-                <button class="btn" onclick="addToCart('Black Tea', 12.00)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Black Tea', 12.00, this)">Add to Cart</button>
             </div>
 
             <div class="variety-card">
@@ -64,12 +85,12 @@
                     <span>🌸 Floral</span>
                 </div>
                 <p class="price">$14.99 / 100g</p>
-                <button class="btn" onclick="addToCart('Green Tea', 14.99)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Green Tea', 14.99, this)">Add to Cart</button>
             </div>
 
             <div class="variety-card">
                 <img src="images/white-tea.jpg" alt="White Tea">
-                <h2>White Tea – Luxury Loose Leaf Tin </h2>
+                <h2>White Tea – Luxury Loose Leaf Tin</h2>
                 <p class="origin">Origin: High Elevations (Nuwara Eliya)</p>
                 <p class="description">Delicate, floral, and subtly sweet. The least processed tea with the highest antioxidant content.</p>
                 <div class="flavor-profile">
@@ -78,7 +99,7 @@
                     <span>🌺 Floral</span>
                 </div>
                 <p class="price">$4.75 / 20g</p>
-                <button class="btn" onclick="addToCart('White Tea', 4.75)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('White Tea', 4.75, this)">Add to Cart</button>
             </div>
 
             <div class="variety-card">
@@ -92,7 +113,7 @@
                     <span>🍯 Sweet</span>
                 </div>
                 <p class="price">$16.99 / 100g</p>
-                <button class="btn" onclick="addToCart('Oolong Tea', 16.99)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Oolong Tea', 16.99, this)">Add to Cart</button>
             </div>
 
             <div class="variety-card">
@@ -107,15 +128,113 @@
                     <span>🌸 Aromatic</span>
                 </div>
                 <p class="price">$4.75 / 20g</p>
-                <button class="btn" onclick="addToCart('Chai Spice', 4.75)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Chai Spice', 4.75, this)">Add to Cart</button>
+            </div>
+
+            <div class="variety-card">
+                <img src="images/green-tea-curls.jpg" alt="Legends Range Green Tea Curls">
+                <h2>Legends Range - Green Tea Curls</h2>
+                <p class="origin">Origin: High Elevations (Nuwara Eliya)</p>
+                <p class="description">Premium Ceylon Green Tea with fruity and floral notes. Ideal after meals or as a palate cleanser.</p>
+                <div class="flavor-profile">
+                    <span>🌿 Green</span>
+                    <span>🍑 Fruity</span>
+                    <span>🌸 Floral</span>
+                </div>
+                <p class="price">$8.99 / 25 Tea Bags</p>
+                <button class="btn" onclick="addToCart('Green Tea Curls', 8.99, this)">Add to Cart</button>
+            </div>
+
+            <div class="variety-card">
+                <img src="images/big-leaf-black-tea.jpg" alt="Classic Range Big Leaf Black Tea">
+                <h2>Classic Range Big Leaf Black Tea</h2>
+                <p class="origin">Origin: Low to Mid Elevations</p>
+                <p class="description">A sought-after Orange Pekoe black tea with large leaves. A household favorite. Tin doubles as storage to keep tea fresh and crisp.</p>
+                <div class="flavor-profile">
+                    <span>⚡ Bold</span>
+                    <span>🍂 Malty</span>
+                    <span>🌾 Crisp</span>
+                </div>
+                <p class="price">$24.99 / 400g Caddy</p>
+                <button class="btn" onclick="addToCart('Big Leaf Black Tea', 24.99, this)">Add to Cart</button>
+            </div>
+
+            <div class="variety-card">
+                <img src="images/ginger-lemongrass.jpg" alt="Himalayan Ginger & Lemongrass">
+                <h2>Himalayan Ginger & Lemongrass</h2>
+                <p class="origin">Origin: Blended (Sri Lankan Lemongrass + Himalayan Ginger)</p>
+                <p class="description">A warming blend of organic Sri Lankan Lemongrass and pure Himalayan Ginger. Tangy lemon notes with a spicy ginger finish. Naturally caffeine free.</p>
+                <div class="flavor-profile">
+                    <span>🧡 Warming</span>
+                    <span>🍋 Tangy</span>
+                    <span>🌿 Caffeine Free</span>
+                </div>
+                <p class="price">$12.99 / 100g</p>
+                <button class="btn" onclick="addToCart('Ginger & Lemongrass', 12.99, this)">Add to Cart</button>
             </div>
         </section>
 
         <div id="cartNotification" class="cart-notification"></div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <span class="footer-brand">Ceylon <span class="highlight">Tea</span></span>
+                    <span class="footer-tagline">✦ Estate Grown ✦</span>
+                </div>
+                <p class="footer-description">Premium Ceylon tea since 1867. Bringing you the finest tea from the lush hills of Sri Lanka.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="varieties.html">Varieties</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Teas</h4>
+                <ul>
+                    <li><a href="varieties.html">Black Tea</a></li>
+                    <li><a href="varieties.html">Green Tea</a></li>
+                    <li><a href="varieties.html">White Tea</a></li>
+                    <li><a href="varieties.html">Oolong Tea</a></li>
+                    <li><a href="varieties.html">Chai Spice</a></li>
+                    <li><a href="varieties.html">Green Tea Curls</a></li>
+                    <li><a href="varieties.html">Big Leaf Black Tea</a></li>
+                    <li><a href="varieties.html">Ginger & Lemongrass</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Get in Touch</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> Kandy, Sri Lanka</li>
+                    <li><i class="fas fa-phone"></i> +94 81 234 5678</li>
+                    <li><i class="fas fa-envelope"></i> info@ceylontea.lk</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 8AM - 6PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Shipping Policy</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <button id="backToTop" title="Back to Top">↑</button>
