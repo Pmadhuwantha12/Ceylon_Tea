@@ -1,83 +1,211 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Ceylon Tea</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- ===== FAVICON ===== -->
-    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <meta
+      name="description"
+      content="Contact Ceylon Tea. Send us a message and we'll get back to you within 24 hours."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
     <link rel="manifest" href="/favicon/site.webmanifest" />
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <nav>
-            <div class="logo">
-                <span class="logo-brand">Ceylon <span class="highlight">Tea</span></span>
-                <span class="logo-location">Sri Lanka</span>
-                <span class="logo-divider"></span>
-                <span class="logo-tagline">✦ Estate Grown ✦</span>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="varieties.html">Varieties</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-            </ul>
-            <div class="hamburger" onclick="toggleMenu()">☰</div>
-        </nav>
+      <nav>
+        <div class="logo">
+          <span class="logo-brand"
+            >Ceylon <span class="highlight">Tea</span></span
+          >
+          <span class="logo-location">Sri Lanka</span>
+          <span class="logo-divider"></span>
+          <span class="logo-tagline">✦ Estate Grown ✦</span>
+        </div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="varieties.html">Varieties</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+      </nav>
     </header>
 
     <main>
-        <section class="page-header">
-            <h1>Get in Touch</h1>
-            <p>We'd love to hear from you!</p>
-        </section>
+      <section class="page-header">
+        <h1>Get in Touch</h1>
+        <p>We'd love to hear from you!</p>
+      </section>
 
-        <section class="contact-content">
-            <div class="contact-form">
-                <h2>Send Us a Message</h2>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="contactName">Your Name *</label>
-                        <input type="text" id="contactName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactEmail">Your Email *</label>
-                        <input type="email" id="contactEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactSubject">Subject</label>
-                        <input type="text" id="contactSubject" placeholder="Question about...">
-                    </div>
-                    <div class="form-group">
-                        <label for="contactMessage">Message *</label>
-                        <textarea id="contactMessage" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
-                <div id="contactFeedback"></div>
+      <section class="contact-content">
+        <div class="contact-form">
+          <h2>📩 Send Us a Message</h2>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Your Name *</label>
+              <input
+                type="text"
+                id="contactName"
+                required
+                placeholder="John Doe"
+              />
             </div>
+            <div class="form-group">
+              <label for="contactEmail">Your Email *</label>
+              <input
+                type="email"
+                id="contactEmail"
+                required
+                placeholder="john@example.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <input
+                type="text"
+                id="contactSubject"
+                placeholder="Question about..."
+              />
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message *</label>
+              <textarea
+                id="contactMessage"
+                rows="5"
+                required
+                placeholder="Write your message here..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+          <div id="contactFeedback"></div>
+        </div>
 
-            <div class="contact-info">
-                <h2>Contact Information</h2>
-                <p><strong>📍 Address:</strong><br>Ceylon Tea Co.,<br>123 Tea Estate Road,<br>Kandy, Sri Lanka</p>
-                <p><strong>📞 Phone:</strong><br>+94 81 234 5678</p>
-                <p><strong>📧 Email:</strong><br>info@ceylontea.lk</p>
-                <p><strong>🕐 Hours:</strong><br>Mon-Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 2:00 PM</p>
+        <div class="contact-info">
+          <h2>Contact Information</h2>
+          <div class="contact-detail">
+            <div>
+              <strong>Address</strong>
+              <p>
+                Ceylon Tea Co.,<br />123 Tea Estate Road,<br />Kandy, Sri Lanka
+              </p>
             </div>
-        </section>
+          </div>
+          <div class="contact-detail">
+            <div>
+              <strong>Phone</strong>
+              <p>+94 81 234 5678</p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div>
+              <strong>Email</strong>
+              <p>info@ceylontea.lk</p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div>
+              <strong>Business Hours</strong>
+              <p>Mon-Fri: 8:00 AM - 6:00 PM<br />Sat: 9:00 AM - 2:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <span class="footer-brand"
+              >Ceylon <span class="highlight">Tea</span></span
+            >
+            <span class="footer-tagline">✦ Estate Grown ✦</span>
+          </div>
+          <p class="footer-description">
+            Premium Ceylon tea since 1867. Bringing you the finest tea from the
+            lush hills of Sri Lanka.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="#" class="social-link" aria-label="YouTube"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="varieties.html">Varieties</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Our Teas</h4>
+          <ul>
+            <li><a href="varieties.html">Black Tea</a></li>
+            <li><a href="varieties.html">Green Tea</a></li>
+            <li><a href="varieties.html">White Tea</a></li>
+            <li><a href="varieties.html">Oolong Tea</a></li>
+            <li><a href="varieties.html">Chai Spice</a></li>
+            <li><a href="varieties.html">Green Tea Curls</a></li>
+            <li><a href="varieties.html">Big Leaf Black Tea</a></li>
+            <li><a href="varieties.html">Ginger & Lemongrass</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul class="footer-contact">
+            <li><i class="fas fa-map-marker-alt"></i> Kandy, Sri Lanka</li>
+            <li><i class="fas fa-phone"></i> +94 81 234 5678</li>
+            <li><i class="fas fa-envelope"></i> info@ceylontea.lk</li>
+            <li><i class="fas fa-clock"></i> Mon-Sat: 8AM - 6PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-container">
+          <p>&copy; 2026 Ceylon Tea. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Shipping Policy</a>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <button id="backToTop" title="Back to Top">↑</button>
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
